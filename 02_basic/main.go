@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 const name = "唐万言"
@@ -36,4 +37,16 @@ func main() {
 	fmt.Println(strings.ToUpper(s1))
 	//把s1全部转为小写
 	fmt.Println(strings.ToLower(s1))
+
+	s := "Hello唐万言"
+	bs := []byte(s)
+	fmt.Println(bs)
+	fmt.Println(len(s))
+	//UTF8 编码下，一个汉字对应三个字节，所以字符串 s 的长度其实是 14
+	fmt.Println(s[0], s[1], s[13])
+	fmt.Println(utf8.RuneCountInString(s))
+	//遍历字符串，i 是索引，r 是 unicode 字符对应的 unicode 码点
+	for i, r := range s {
+		fmt.Println(i, r)
+	}
 }
